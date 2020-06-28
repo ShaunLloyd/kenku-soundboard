@@ -1,0 +1,64 @@
+{
+  "name": "kenku-soundboard",
+  "version": "0.0.1",
+  "author": {
+    "name": "Shaun Lloyd",
+    "email": "shaunlloydmedia@gmail.com"
+  },
+  "description": "Desktop application for building dialog on the fly for your Kenku from sound bites of you campaign",
+  "private": false,
+  "main": "./build/electron/main.js",
+  "scripts": {
+    "react:start": "react-scripts start",
+    "react:build": "react-scripts build",
+    "react:test": "react-scripts test",
+    "react:eject": "react-scripts eject",
+    "postinstall": "electron-builder install-app-deps",
+    "electron:dev": "concurrently \"BROWSER=none yarn react:start\" \"wait-on http://localhost:3000 && tsc -p electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
+    "electron:dev:windows": "concurrently \"SET BROWSER=none && yarn react:start\" \"wait-on http://localhost:3000 && tsc -p electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
+    "electron:build": "yarn react:build && tsc -p electron && electron-builder"
+  },
+  "dependencies": {
+    "electron-devtools-installer": "^3.1.0",
+    "electron-reload": "^1.5.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1"
+  },
+  "devDependencies": {
+    "@types/electron-devtools-installer": "^2.2.0",
+    "@types/jest": "26.0.0",
+    "@types/node": "14.0.13",
+    "@types/react": "16.9.38",
+    "@types/react-dom": "16.9.8",
+    "concurrently": "^5.2.0",
+    "electron": "^9.0.4",
+    "electron-builder": "^22.7.0",
+    "typescript": "^3.9.5",
+    "wait-on": "^5.0.1"
+  },
+  "build": {
+    "extends": null,
+    "files": [
+      "build/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
